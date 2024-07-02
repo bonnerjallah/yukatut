@@ -2,6 +2,9 @@ import * as THREE from "three";
 import * as YUKA from "yuka";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+
+//SEEK STEERING BEHAVIOR
+
 class Guard {
     constructor(game) {
         this.game = game;
@@ -37,17 +40,23 @@ class Guard {
         this.target.setRenderComponent(this.targetGeo, this.sync.bind(this)); // Fixed typo here
 
         this.entityManager.add(this.target);
-        
-        this.seekBehavior = new YUKA.SeekBehavior(this.target.position);
-        this.vehicle.steering.add(this.seekBehavior);
 
-        setInterval(() => {
-            const x = Math.random() * 3;
-            const y = Math.random() * 3;
-            const z = Math.random() * 3;
+        //seek behavior instance
+        this.arriveBehavior = new YUKA.ArriveBehavior(this.target.position, 6, 2);
+        this.vehicle.steering.add(this.arriveBehavior)
 
-            this.target.position.set(x, y, z)
-        }, 5000);
+        // this.seekBehavior = new YUKA.SeekBehavior(this.target.position);
+        // this.vehicle.steering.add(this.seekBehavior);
+
+        this.vehicle.maxSpeed = 3;
+
+        // setInterval(() => {
+        //     const x = Math.random() * 3;
+        //     const y = Math.random() * 3;
+        //     const z = Math.random() * 3;
+
+        //     this.target.position.set(x, y, z)
+        // }, 5000);
 
 
 

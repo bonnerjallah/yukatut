@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import * as YUKA from 'yuka';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+
+//PATH FOLLOWING
 class Car {
     constructor(game) {
         this.game = game;
@@ -33,6 +35,7 @@ class Car {
         this.onPathBehavior.radius = 1;
         this.vehicle.steering.add(this.onPathBehavior);
 
+        
         this.followPathBehavior = new YUKA.FollowPathBehavior(this.path, 2); // Adjust speed as needed
         this.vehicle.steering.add(this.followPathBehavior);
 
